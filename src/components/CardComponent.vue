@@ -1,11 +1,20 @@
 <template>
   <div class="card">
+    <pre>{{ imageId }}</pre>
     <div class="card-inner" @click="onFillip" :class="{ isFlliped: isFlliped }">
       <div class="card-face card-face-front">
         <div class="card-content-front"></div>
       </div>
+
       <div class="card-face card-face-back">
-        <div class="card-content-back">Back</div>
+        <div
+          :style="{
+            backgroundImage: `url(${require('@/assets/images/' +
+              imageId +
+              '.png')})`,
+          }"
+          class="card-content-back"
+        ></div>
       </div>
     </div>
   </div>
@@ -13,6 +22,12 @@
 
 <script>
 export default {
+  props: {
+    imageId: {
+      type: [Number, String, Array, Object],
+      required: true,
+    },
+  },
   data() {
     return {
       isFlliped: false,
@@ -66,6 +81,13 @@ export default {
 }
 .card-content-front {
   background-image: url("../assets/images/icon_back.png");
+  background-size: contain;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+.card-content-back {
   background-size: contain;
   background-position: center center;
   width: 100%;

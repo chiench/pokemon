@@ -4,8 +4,10 @@
     <card-component
       v-for="(card, index) in cardContext"
       :key="index"
+      :imageId="card"
     ></card-component>
   </div>
+  <pre>{{ card }}</pre>
 </template>
 
 <script>
