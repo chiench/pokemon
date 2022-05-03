@@ -3,13 +3,26 @@
     <h1>POKE MEMORIES</h1>
     <p>Select mode to start game</p>
     <div class="option">
-      <ul>
-        <li v-for="(option, i) in options" :key="i">
-          <a :href="`${option.to}`">{{ option.name }}</a>
-          <br />
-          <span>{{ option.level }}</span>
-        </li>
-      </ul>
+      <button @click="onStart(16)">
+        <span>4x4</span>
+        <span>Esay</span>
+      </button>
+      <button @click="onStart(36)">
+        <span>6x6</span>
+        <span>Esay</span>
+      </button>
+      <!-- <button>
+        <span>6x6</span>
+        <span>Nomarl</span>
+      </button>
+      <button>
+        <span>8x8</span>
+        <span>Hard</span>
+      </button>
+      <button>
+        <span>10x10</span>
+        <span>Super Hard</span>
+      </button> -->
     </div>
   </div>
 </template>
@@ -25,7 +38,11 @@ export default {
       ],
     };
   },
-  methods: {},
+  methods: {
+    onStart(amount) {
+      this.$emit("show", { amount });
+    },
+  },
 };
 </script>
 <style scoped>
