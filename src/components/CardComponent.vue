@@ -31,12 +31,19 @@ export default {
   data() {
     return {
       isFlliped: false,
+      disabled: false,
     };
   },
   methods: {
     onFillip() {
-      console.log(1);
       this.isFlliped = !this.isFlliped;
+      if (this.isFlliped) {
+        this.$emit("checkrule", this.imageId);
+      }
+    },
+    closeCard() {
+      console.log(2);
+      this.isFlliped = false;
     },
   },
 };
@@ -93,5 +100,7 @@ export default {
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
+}
+.disabled {
 }
 </style>
