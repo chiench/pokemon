@@ -2,18 +2,19 @@
   <div class="screen">
     <h1>one</h1>
     <card-component
-      :ref="card"
       v-for="(card, index) in cardContext"
       :key="index"
       :imageId="card"
+      :card="{ index, value: card }"
       @checkrule="play($event)"
+      ref="Card"
     ></card-component>
   </div>
-  <pre>{{ card }}</pre>
 </template>
 
 <script>
 import CardComponent from "./CardComponent.vue";
+
 export default {
   name: "MainSreen",
   data() {
@@ -31,6 +32,8 @@ export default {
   },
   methods: {
     play(config) {
+      console.log(config.index);
+      console.log(this.$refs.Card[config.index].onBackFilipCard());
       if (this.ArrayTestPlay.length === 2) {
         return false;
       }
@@ -38,14 +41,20 @@ export default {
 
       if (
         this.ArrayTestPlay.length === 2 &&
-        this.ArrayTestPlay[0] === this.ArrayTestPlay[1]
+        this.ArrayTestPlay[0].value === this.ArrayTestPlay[1].value
       ) {
         console.log("Right");
       } else if (
         this.ArrayTestPlay.length === 2 &&
-        this.ArrayTestPlay[0] !== this.ArrayTestPlay[1]
+        this.ArrayTestPlay[0].value !== this.ArrayTestPlay[1].value
       ) {
-        console.log(this.$refs.card.closeCard());
+        console.log("wrong");
+        setTimeout(() => {
+          this.$refs.Card[config.index].onBackFilipCard();
+          this.$refs.Card[config.index].onBackFilipCard();
+        }, 800);
+
+        //this.$refs[`card-${this.ArrayTestPlay[0].index}`].closeCard();
       }
     },
   },

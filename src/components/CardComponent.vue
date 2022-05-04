@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <pre>{{ imageId }}</pre>
+
     <div class="card-inner" @click="onFillip" :class="{ isFlliped: isFlliped }">
       <div class="card-face card-face-front">
         <div class="card-content-front"></div>
@@ -23,6 +24,10 @@
 <script>
 export default {
   props: {
+    card: {
+      type: [Number, String, Array, Object],
+      required: true,
+    },
     imageId: {
       type: [Number, String, Array, Object],
       required: true,
@@ -38,11 +43,13 @@ export default {
     onFillip() {
       this.isFlliped = !this.isFlliped;
       if (this.isFlliped) {
-        this.$emit("checkrule", this.imageId);
+        this.$emit("checkrule", this.card);
       }
     },
-    closeCard() {
-      console.log(2);
+
+    onBackFilipCard() {
+      console.log(2232323);
+
       this.isFlliped = false;
     },
   },
